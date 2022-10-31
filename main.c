@@ -13,6 +13,12 @@ struct dav
 };
 
 
+struct main
+{
+    char hello;
+};
+
+
 int main(void){
 
     printf("hej");
