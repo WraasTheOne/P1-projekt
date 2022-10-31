@@ -34,6 +34,7 @@ int main(void){
 
     printf("hej");
     printf("Sander was here");
+    printf("sander is using vsc :(");
     return 0;
 }
 
