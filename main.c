@@ -34,7 +34,6 @@ int main(void){
 
     printf("hej");
     printf("Sander was here");
-    printf("test");
     return 0;
 }
 
