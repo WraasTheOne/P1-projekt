@@ -19,6 +19,7 @@ struct main
     char test;
     int my_int;
     float my_flot;
+
 };
 
 
