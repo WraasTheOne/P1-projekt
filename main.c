@@ -33,7 +33,9 @@ struct altså
 
 int main(void){
 
+
     printf("hej");
+    printf("mander is using clion");
     printf("Sander was here");
     return 0;
 }
