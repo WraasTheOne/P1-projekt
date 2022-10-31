@@ -6,6 +6,11 @@ struct hej
     int hoejde;
 };
 
+struct dav
+{
+    int data;
+    int brede;
+};
 
 
 int main(void){
