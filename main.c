@@ -19,6 +19,12 @@ struct main
     char test;
 };
 
+struct altså
+{
+    int c;
+};
+
+
 
 int main(void){
 
