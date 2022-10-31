@@ -16,6 +16,7 @@ struct dav
 struct main
 {
     char hello;
+    char test;
 };
 
 
