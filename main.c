@@ -25,7 +25,6 @@ struct main
 struct altså
 {
     int c;
-    int k;
 };
 
 
@@ -39,3 +38,4 @@ int main(void){
     return 0;
 }
 
+//hej med dig
