@@ -22,6 +22,12 @@ struct main
 
 };
 
+struct altså
+{
+    int c;
+};
+
+
 
 int main(void){
 
