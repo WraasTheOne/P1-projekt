@@ -1,0 +1,3 @@
+C:/Users/alexa/CLionProjects/P1-projekt/cmake-build-debug/CMakeFiles/P1_projekt.dir
+C:/Users/alexa/CLionProjects/P1-projekt/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/alexa/CLionProjects/P1-projekt/cmake-build-debug/CMakeFiles/rebuild_cache.dir
