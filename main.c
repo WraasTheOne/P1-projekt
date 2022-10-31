@@ -32,7 +32,7 @@ struct altså
 int main(void){
 
     printf("hej");
-
+    printf("Sander was here");
     return 0;
 }
 
