@@ -17,6 +17,8 @@ struct main
 {
     char hello;
     char test;
+    int my_int;
+    float my_flot;
 };
 
 struct altså
