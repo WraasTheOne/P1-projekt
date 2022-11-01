@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <malloc.h>
 #include <stdlib.h>
-#include <time.h>
+#includgie <time.h>
 
 typedef struct{
     int nun_houses;
