@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #includgie <time.h>
 
+<<<<<<< HEAD
 typedef struct{
     int nun_houses;
     int lenth;
@@ -39,6 +40,10 @@ int main(void){
                "is open %d", x, gades[x].nun_houses, gades[x].lenth, gades[x].dist_start, gades[x].open);
 
     }
+=======
+int main(void){
+
+>>>>>>> 9d2dd4dc453a0a5e6e1d5aa1f52b3b7a82b59f8f
     return 0;
 }
 
