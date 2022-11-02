@@ -4,7 +4,7 @@
 
 typedef struct{
     int nun_houses;
-    int lenth;
+    int lenth_of_steet;
     int open;
     int dist_start;
 
@@ -17,26 +17,45 @@ typedef struct{
 }HOUSEHOLD;
 
 int main(void){
-
     int numOfGade=4;
     int x;
     int numOne;
     srand(time(NULL));
     numOne = rand();
     printf("%d \n", numOne);
-    GADE * gades = malloc(numOfGade * sizeof *gades);
-    for (int x = 0; x < numOfGade; ++x) {
+    GADE* gades = malloc(numOfGade * sizeof *gades);
+    for (x = 0; x < numOfGade; ++x) {
         gades[x].nun_houses = rand()%10;
-        gades[x].lenth = rand()%20;
+        gades[x].lenth_of_steet = rand() % 20;
         gades[x].dist_start = rand()%20;
         gades[x].open = rand() & 1;
     }
-    for (int x = 0; x < numOfGade; ++x) {
-        printf("\n--------------------------------------\n");
-        printf(" GadeNavn: %d \n antalof houses on the street %d \n lenth of the rode %d \n "
-               "lenth of the dist of start %d \n "
-               "is open %d", x, gades[x].nun_houses, gades[x].lenth, gades[x].dist_start, gades[x].open);
+    int currnt_houses = 0;
+    for(int i_houses = 0; i_houses < numOfGade; ++i_houses) {
+        currnt_houses = currnt_houses + gades[i_houses].nun_houses;
+    }
+    printf("anttalet of housses: %d", currnt_houses);
 
+    HOUSEHOLD* houses = malloc(currnt_houses * sizeof *houses);
+    for (x = 0; x < numOfGade; ++x) {
+        for (int j = 0; j < gades[x].nun_houses; ++j) {
+            houses[j].curnnt_grabge = rand()%100;
+            houses[j].gade_name = x;
+            houses[j].nr = j;
+        }
+    }
+    for (x = 0; x < numOfGade; ++x) {
+        printf("\n--------------------------------------\n");
+        printf(" GadeNavn: %d \n antal of houses on the street %d \n lenth_of_steet of the rode %d \n "
+               "lenth_of_steet of the dist of start %d \n "
+               "is open %d\n", x, gades[x].nun_houses, gades[x].lenth_of_steet, gades[x].dist_start, gades[x].open);
+        for (int y = 0; y < currnt_houses; ++y) {
+            printf("| ");
+            printf("House gade: %d ", houses[y].);
+
+
+        }
+        printf("|");
     }
     return 0;
 }
