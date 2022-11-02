@@ -51,7 +51,7 @@ int main(void){
                "is open %d\n", x, gades[x].nun_houses, gades[x].lenth_of_steet, gades[x].dist_start, gades[x].open);
         for (int y = 0; y < currnt_houses; ++y) {
             printf("| ");
-            printf("House gade: %d ", houses[y].);
+            printf("House gade: %d ", houses[y].gade_name);
 
 
         }
