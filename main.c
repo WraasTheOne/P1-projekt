@@ -17,7 +17,7 @@ typedef struct{
 }HOUSEHOLD;
 
 int main(void){
-    int numOfGade=4;
+    int numOfGade=7;
     int x;
     int numOne;
     srand(time(NULL));
@@ -25,7 +25,7 @@ int main(void){
     printf("%d \n", numOne);
     GADE* gades = malloc(numOfGade * sizeof *gades);
     for (x = 0; x < numOfGade; ++x) {
-        gades[x].nun_houses = rand()%10;
+        gades[x].nun_houses = (rand()%9)+1;
         gades[x].lenth_of_steet = rand() % 20;
         gades[x].dist_start = rand()%20;
         gades[x].open = rand() & 1;
