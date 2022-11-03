@@ -36,7 +36,7 @@ int main(void){
     }
 
     printf("anttalet of housses: %d", currnt_houses);
-    //HOUSEHOLD *houses = malloc(numOfGade * currnt_houses * sizeof(HOUSEHOLD *));
+    //HOUSEHOLD **houses = malloc(numOfGade * currnt_houses * sizeof(HOUSEHOLD *));
     HOUSEHOLD houses[numOfGade][currnt_houses];
     //if (houses == NULL){
     //    printf("Hov hov ");
