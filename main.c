@@ -17,15 +17,21 @@ typedef struct{
 }HOUSEHOLD;
 
 int main(void){
+
+
+
     int numOfGade=4;
     int x;
     int numOne;
     srand(time(NULL));
     numOne = rand();
-    printf("%d \n", numOne);
+    //printf("%d \n", numOne);
     GADE* gades = malloc(numOfGade * sizeof *gades);
     for (x = 0; x < numOfGade; ++x) {
         gades[x].nun_houses = rand()%10;
+        if (gades[x].nun_houses < 1){
+            gades[x].nun_houses = 1;
+        }
         gades[x].lenth_of_steet = rand() % 20;
         gades[x].dist_start = rand()%20;
         gades[x].open = rand() & 1;
@@ -35,7 +41,7 @@ int main(void){
         currnt_houses += gades[i_houses].nun_houses;
     }
 
-    printf("anttalet of housses: %d", currnt_houses);
+    //printf("anttalet of housses: %d\n", currnt_houses);
     //HOUSEHOLD **houses = malloc(numOfGade * currnt_houses * sizeof(HOUSEHOLD *));
     HOUSEHOLD houses[numOfGade][currnt_houses];
     //if (houses == NULL){
@@ -44,7 +50,7 @@ int main(void){
     //}
     for (x = 0; x < numOfGade; ++x) {
         for (int j = 0; j < currnt_houses; ++j) {
-            //houses[x][j].curnnt_grabge = rand()%100;
+            houses[x][j].curnnt_grabge = rand()%100;
             houses[x][j].gade_name = x;
             houses[x][j].nr = j;
         }
@@ -52,17 +58,11 @@ int main(void){
 
 
     for (x = 0; x < numOfGade; ++x) {
-        printf("\n--------------------------------------\n");
-        printf(" GadeNavn: %d \n antal of houses on the street %d \n lenth_of_steet of the rode %d \n "
-               "lenth_of_steet of the dist of start %d \n "
-              "is open %d\n", x, gades[x].nun_houses, gades[x].lenth_of_steet, gades[x].dist_start, gades[x].open);
+        printf("GadeNavn: %d \n", x);
         for (int y = 0; y < gades[x].nun_houses; ++y) {
-            printf("| ");
-            printf("House gade: %d ", houses[x][y].gade_name);
-
+            printf("House_nr; %d\nHouse_garbe: %d\n",houses[x][y].nr, houses[x][y].curnnt_grabge);
 
         }
-        printf("|");
     }
     return 0;
 }
