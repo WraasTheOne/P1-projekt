@@ -67,7 +67,7 @@ int main(void){
         printf("GadeNavn; %d \n", x);
         for (int y = 0; y < gades[x].nun_houses; ++y) {
             printf("House_nr; %d\nHouse_garbe; %d\n",houses[x][y].nr, houses[x][y].curnnt_grabge);
-
+	//sander is here
         }
     }
     return 0;
