@@ -56,12 +56,10 @@ int main(void){
         }
     }
 
-
-
     for (x = 0; x < numOfGade; ++x) {
-        printf("GadeNavn: %d \n", x);
+        printf("GadeNavn; %d \n", x);
         for (int y = 0; y < gades[x].nun_houses; ++y) {
-            printf("House_nr; %d\nHouse_garbe: %d\n",houses[x][y].nr, houses[x][y].curnnt_grabge);
+            printf("House_nr; %d\nHouse_garbe; %d\n",houses[x][y].nr, houses[x][y].curnnt_grabge);
 
         }
     }
