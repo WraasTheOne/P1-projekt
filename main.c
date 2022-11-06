@@ -4,7 +4,7 @@
 
 typedef struct{
     int nun_houses;
-    int lenth_of_steet;
+    int length_of_street;
     int open;
     int dist_start;
 
@@ -13,7 +13,14 @@ typedef struct{
 typedef struct{
     int gade_name;
     int nr;
-    int curnnt_grabge;
+    int current_garbage;
+
+
+
+
+
+
+    
 }HOUSEHOLD;
 
 int main(void){
