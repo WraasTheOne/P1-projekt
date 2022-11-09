@@ -28,7 +28,7 @@ int main(void){
 
 
     int numOfGade=4;
-    int x;
+    int x, j;
     int numOne;
     srand(time(NULL));
     numOne = rand();
@@ -39,7 +39,7 @@ int main(void){
         if (gades[x].nun_houses < 1){
             gades[x].nun_houses = 1;
         }
-        gades[x].lenth_of_steet = rand() % 20;
+        gades[x].length_of_street = rand() % 20;
         gades[x].dist_start = rand()%20;
         gades[x].open = rand() & 1;
     }
@@ -57,7 +57,7 @@ int main(void){
     //}
     for (x = 0; x < numOfGade; ++x) {
         for (int j = 0; j < currnt_houses; ++j) {
-            houses[x][j].curnnt_grabge = rand()%100;
+            houses[x][j].current_garbage = rand()%100;
             houses[x][j].gade_name = x;
             houses[x][j].nr = j;
         }
@@ -66,7 +66,7 @@ int main(void){
     for (x = 0; x < numOfGade; ++x) {
         printf("GadeNavn; %d \n", x);
         for (int y = 0; y < gades[x].nun_houses; ++y) {
-            printf("House_nr; %d\nHouse_garbe; %d\n",houses[x][y].nr, houses[x][y].curnnt_grabge);
+            printf("House_nr; %d\nHouse_garbe; %d\n",houses[x][y].nr, houses[x][y].current_garbage);
 	//sander is here
         }
     }
