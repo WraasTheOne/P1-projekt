@@ -1,23 +1,30 @@
 #include <stdio.h>
 #define force_empty 60
-double calculate_pickup_priority(double pickup_priority, double *fill_amount_procent, double *last_empty_days);
+
+int calculate_pickup_priority(int pickup_priority, int fill_amount_procent, int last_empty_days);
 
 int main (void){
-double last_empty_days;
-double fill_amount_procent;
-double pickup_priority;
+int last_empty_days;
+int fill_amount_procent;
+int pickup_priority = 0;
 
-last_empty_days = 10;
+//Temporary placeholder for array data
+last_empty_days = 11;
 fill_amount_procent = 59;
  
+
+    for(x = 0; x < street_amount; ++x){
+
+
+    }
     if(fill_amount_procent <= force_empty){
-        printf("%lf", calculate_pickup_priority(pickup_priority, &fill_amount_procent, &last_empty_days));
+        printf("%d", calculate_pickup_priority(pickup_priority, fill_amount_procent, last_empty_days));
     }
     return (0);
 }
 
-
-double calculate_pickup_priority(double pickup_priority, double *fill_amount_procent, double *last_empty_days){
-    pickup_priority = *fill_amount_procent * (*last_empty_days / 100 + 0.9);
+int calculate_pickup_priority(int pickup_priority, int fill_amount_procent, int last_empty_days){
+    // Temporary math formula for pickup priority
+    pickup_priority = fill_amount_procent * (last_empty_days / 100 + 0.9);
     return (pickup_priority);
 } 
