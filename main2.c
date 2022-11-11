@@ -17,11 +17,11 @@ typedef struct struct_street{
 
     }struct_house;
 
-int generator(struct_street *p_struct_street, struct_house *p_struct_house, int *amount_house_total, int amount_street);
+void generator(struct_street *p_struct_street, struct_house *p_struct_house, int *amount_house_total, int amount_street);
 
 int main (void){
-    struct_house *p_struct_street;
-    struct_street *p_struct_house;
+    struct_house p_struct_street;
+    struct_street p_struct_house;
     int amount_house_total = 0;
     int choice;
     int amount_street = 4;
@@ -39,7 +39,7 @@ int main (void){
     return 0;
 }
  
-int generator(struct_street *p_struct_street, struct_house *p_struct_house, int *amount_house_total, int amount_street){
+void generator(struct_street *p_struct_street, struct_house *p_struct_house, int *amount_house_total, int amount_street){
     int i;
     srand(time(NULL));
     struct_street *street = malloc(amount_street * sizeof street);

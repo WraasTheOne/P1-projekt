@@ -9,20 +9,20 @@ typedef struct struct_street{
     }struct_street;
 
 
-struct_street generate_street (int amount_stree );
+void generate_street (int amount_street, struct_street *street);
 
 int main (void){
     int amount_house_total = 0;
     int choice;
     int amount_street = 4;
     int i;
-    struct_street *street;
+    struct_street street;
 
     printf("Type 1 for generation or 2 for data file");
     scanf("%d", &choice);
     
     if(choice == 1){
-        *street = generate_street(amount_street);
+        generate_street(amount_street, &street);
     };
     for (i = 0; i < amount_street; ++i){
         amount_house_total += street[i].amount_house_street;
@@ -35,7 +35,7 @@ int main (void){
     return 0;
 }
  
-struct_street generate_street(int amount_street ){
+void generate_street(int amount_street, struct_street *street){
     int i;
     srand(time(NULL));
     struct_street *street = malloc(amount_street * sizeof street);
@@ -45,5 +45,5 @@ struct_street generate_street(int amount_street ){
         street[i].distance_start =rand()%20;
         street[i].open_street = rand() & 1;
     }
-    return (*street);
+    return (0);
 }
