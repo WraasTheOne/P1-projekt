@@ -26,15 +26,14 @@ int recorded = 0;
 
 int main(void)
 {
-    int recorded = 0, i = 0;
+    int i = 0;
 
     struct_street *array;
-
     array = load_streets();
 
     for (i = 0; i < recorded; i++)
     {
-        printf("%d, %d", array[i].street_nr, recorded);
+        printf("%d, %d\n", array[i].street_nr, recorded);
     }
 
     return 0;
@@ -68,7 +67,7 @@ struct_street *load_streets()
     printf("%d \n", count);
 
     array_street = malloc(count * sizeof(street));
-
+    rewind(file_streets);
     do
     {
         reads = fscanf(file_streets,"%d,%d,%d,%d,%d\n",
