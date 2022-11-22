@@ -1,0 +1,7 @@
+9, 200, 0, 3000,
+
+    int amount_house_street;
+    int length_of_street;
+    int open_street;
+    int distance_start;
+    int street_rating;
