@@ -48,7 +48,7 @@ struct_street *load_streets()
 
     FILE *file_streets;
 
-    file_streets = fopen("houses.csv", "r");
+    file_streets = fopen("streets.csv", "r");
 
     if (file_streets == NULL)
     {
@@ -64,7 +64,6 @@ struct_street *load_streets()
             count = count + 1;
         }
     }
-    printf("%d \n", count);
 
     array_street = malloc(count * sizeof(street));
     rewind(file_streets);
