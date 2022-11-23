@@ -26,14 +26,18 @@ typedef struct struct_house
     int house_color;
 } struct_house;
 
+int recorded = 0;
+
 struct_street *generate_street_array(int amount_street);
 struct_house **generate_house_array(int amount_street, int amount_house_total, struct_street *p_array_street);
 void assign_color(struct_house **p_array_struct_house, int amount_house_total, int amount_street);
 void print_house_color(struct_street* p_array_street, struct_house** p_array_house, int amount_house_total, int amount_street);
+struct_street *load_streets();
 
 int main(void)
 {
     int amount_house_total = 0;
+    int i;
     int choice;
     int amount_street = 4;
     struct_street *p_array_street;
@@ -47,7 +51,7 @@ int main(void)
     {
         p_array_street = generate_street_array(amount_street);
         // Count total amount of houses to generate house array
-        for (int i = 0; i < amount_street; ++i)
+        for (i = 0; i < amount_street; ++i)
         {
             amount_house_total += p_array_street[i].amount_house_street;
         }
@@ -55,6 +59,12 @@ int main(void)
     }
     else if (choice == 2)
     {
+
+        p_array_street = load_streets();
+
+        for(i = 0){
+
+        }
         printf("WIP \n");
         exit(0);
     }
@@ -160,4 +170,58 @@ void print_house_color(struct_street* p_array_street, struct_house** p_array_hou
     }
 }
 
+struct_street *load_streets()
+{
+    int i, count = 0, reads = 0;
+    char c;
+    struct_street street;
+    struct_street *array_street;
 
+    FILE *file_streets;
+
+    file_streets = fopen("streets.csv", "r");
+
+    if (file_streets == NULL)
+    {
+        printf("Error opening file.\n");
+    }
+
+    srand(time(NULL));
+
+    for (c = getc(file_streets); c != EOF; c = getc(file_streets))
+    {
+        if (c == '\n') // Increment count if this character is newline
+        {
+            count = count + 1;
+        }
+    }
+
+    array_street = malloc(count * sizeof(street));
+    rewind(file_streets);
+    do
+    {
+        reads = fscanf(file_streets,"%d,%d,%d,%d,%d\n",
+                       &array_street[recorded].street_nr,
+                       &array_street[recorded].amount_house_street,
+                       &array_street[recorded].length_of_street,
+                       &array_street[recorded].open_street,
+                       &array_street[recorded].distance_start);
+
+        if (reads == 5)recorded++;
+
+        if (reads != 5 && !feof(file_streets))
+        {
+            printf("File format incorrect.\n");
+        }
+
+        if (ferror(file_streets))
+        {
+            printf("Error reading file.\n");
+        }
+
+    } while (!feof(file_streets));
+
+    fclose(file_streets);
+
+    return (array_street);
+}
