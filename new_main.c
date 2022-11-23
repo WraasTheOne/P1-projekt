@@ -164,7 +164,7 @@ void print_house_color(struct_street* p_array_street, struct_house** p_array_hou
                 printf(BLUE "House_number: %d\nBin_fill_amount: %d%%\nDays since last empty: %d\n\n" RESET, p_array_house[i][y].house_name, p_array_house[i][y].fill_amount_procent, p_array_house[i][y].last_empty_days);;
             }
         }
-
+        //yo test
     }
 }
 
