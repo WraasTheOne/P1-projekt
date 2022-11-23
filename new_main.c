@@ -44,7 +44,7 @@ int main(void)
     struct_house **p_array_house;
 
     printf("type 1 to generate data and 2 to load data");
-    scanf("%d", &choice);
+    scanf(" %d", &choice);
 
 
     if (choice == 1)
@@ -62,9 +62,7 @@ int main(void)
 
         p_array_street = load_streets();
 
-        for(i = 0){
 
-        }
         printf("WIP \n");
         exit(0);
     }
