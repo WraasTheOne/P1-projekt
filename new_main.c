@@ -216,7 +216,7 @@ struct_street *load_streets()
         }
 
     } while (!feof(file_streets));
-
+    // hej
     fclose(file_streets);
 
     return (array_street);
