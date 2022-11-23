@@ -62,7 +62,7 @@ int main(void)
 
         p_array_street = load_streets();
 
-        for(i = 0){
+        for(i = 0; i < recorded; i++){
 
         }
         printf("WIP \n");
