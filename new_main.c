@@ -30,7 +30,7 @@ int recorded = 0;
 
 struct_street *generate_street_array(int amount_street);
 struct_house **generate_house_array(int amount_street, int amount_house_total, struct_street *p_array_street);
-void assign_color(struct_house **p_array_struct_house, int amount_house_total, int amount_street);
+void assign_color(struct_house **p_array_house, struct_street *p_array_street, int amount_house_total, int amount_street);
 void print_house_color(struct_street* p_array_street, struct_house** p_array_house, int amount_house_total, int amount_street);
 struct_street *load_streets();
 
@@ -39,7 +39,7 @@ int main(void)
     int amount_house_total = 0;
     int i;
     int choice;
-    int amount_street = 4;
+    int amount_street = 5;
     struct_street *p_array_street;
     struct_house **p_array_house;
 
@@ -60,18 +60,18 @@ int main(void)
     else if (choice == 2)
     {
 
-        p_array_street = load_streets();
+        // p_array_street = load_streets();
 
-        for(i = 0; i < recorded; i++){
+        // for(i = 0; i < recorded; i++){
 
-        }
+        // }
         printf("WIP \n");
         exit(0);
     }
 
 
 
-    assign_color(p_array_house, amount_house_total, amount_street);
+    assign_color(p_array_house,p_array_street, amount_house_total, amount_street);
     print_house_color(p_array_street, p_array_house, amount_house_total, amount_street);
 
     return 0;
@@ -84,7 +84,7 @@ struct_street *generate_street_array(int amount_street)
     struct_street *array_street;
 
     srand(time(NULL));
-    array_street = malloc(amount_street * sizeof street);
+    array_street = malloc(amount_street * sizeof(street));
     for (i = 0; i < amount_street; ++i)
     {
         array_street[i].street_nr = i;
@@ -110,9 +110,8 @@ struct_house **generate_house_array(int amount_street, int amount_house_total, s
     {
         for (int x = 0; x < amount_street; ++x)
         {
-            // array_house[x] = malloc(amount_house_total * sizeof(house));
             array_house[x] = malloc(p_array_street[x].amount_house_street * sizeof(house));
-            for (int j = 0; j < amount_house_total; ++j)
+            for (int j = 0; j < p_array_street[x].amount_house_street; ++j)
             {
                 array_house[x][j].fill_amount_procent = rand() % 100;
                 array_house[x][j].last_empty_days = rand() % 30;
@@ -123,14 +122,11 @@ struct_house **generate_house_array(int amount_street, int amount_house_total, s
     }
     return (array_house);
 }
-
-
-
-void assign_color(struct_house **p_array_house, int amount_house_total, int amount_street)
+void assign_color(struct_house **p_array_house, struct_street *p_array_street, int amount_house_total, int amount_street)
 {
     for (int i = 0; i < amount_street; i++)
     {
-        for (int x = 0; x < amount_house_total; x++)
+        for (int x = 0; x < p_array_street[i].amount_house_street; x++)
         {
             if(p_array_house[i][x].fill_amount_procent < 15)
             {
