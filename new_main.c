@@ -44,7 +44,7 @@ int main(void)
     struct_house **p_array_house;
 
     printf("type 1 to generate data and 2 to load data");
-    scanf("%d", &choice);
+    choice = 1;
 
 
     if (choice == 1)
@@ -56,6 +56,10 @@ int main(void)
             amount_house_total += p_array_street[i].amount_house_street;
         }
         p_array_house = generate_house_array(amount_street, amount_house_total, p_array_street);
+
+        assign_color(p_array_house, p_array_street, amount_house_total, amount_street);
+        print_house_color(p_array_street, p_array_house, amount_house_total, amount_street);
+
     }
     else if (choice == 2)
     {
@@ -71,21 +75,18 @@ int main(void)
 
 
 
-    assign_color(p_array_house,p_array_street, amount_house_total, amount_street);
-    print_house_color(p_array_street, p_array_house, amount_house_total, amount_street);
 
     return 0;
 }
 
 struct_street *generate_street_array(int amount_street)
 {
-    int i;
-    struct_street street;
+
     struct_street *array_street;
 
-    srand(time(NULL));
-    array_street = malloc(amount_street * sizeof(street));
-    for (i = 0; i < amount_street; ++i)
+    //srand(time(NULL));
+    array_street = malloc(amount_street * sizeof(struct_street));
+    for (int i = 0; i < amount_street; ++i)
     {
         array_street[i].street_nr = i;
         array_street[i].amount_house_street = 1 + rand() % MAXHOUSE;
@@ -98,9 +99,9 @@ struct_street *generate_street_array(int amount_street)
 
 struct_house **generate_house_array(int amount_street, int amount_house_total, struct_street *p_array_street)
 {
-    struct_house house;
+
     struct_house **array_house;
-    array_house = malloc(amount_street * sizeof(house));
+    array_house = malloc(amount_street * sizeof(struct_house));
     if (array_house == NULL)
     {
         printf("Memory not allocated \n");
@@ -110,7 +111,8 @@ struct_house **generate_house_array(int amount_street, int amount_house_total, s
     {
         for (int x = 0; x < amount_street; ++x)
         {
-            array_house[x] = malloc(p_array_street[x].amount_house_street * sizeof(house));
+            // array_house[x] = malloc(amount_house_total * sizeof(house));
+            array_house[x] = malloc(p_array_street[x].amount_house_street * sizeof(struct_house));
             for (int j = 0; j < p_array_street[x].amount_house_street; ++j)
             {
                 array_house[x][j].fill_amount_procent = rand() % 100;
@@ -138,7 +140,7 @@ void assign_color(struct_house **p_array_house, struct_street *p_array_street, i
             else if(p_array_house[i][x].fill_amount_procent > 15 && p_array_house[i][x].fill_amount_procent < 85 && p_array_house[i][x].last_empty_days < 14){
                 p_array_house[i][x].house_color = yellow;
             }
-             else if(p_array_house[i][x].fill_amount_procent > 15 && p_array_house[i][x].fill_amount_procent < 85 && p_array_house[i][x].last_empty_days > 14){
+            else if(p_array_house[i][x].fill_amount_procent > 15 && p_array_house[i][x].fill_amount_procent < 85 && p_array_house[i][x].last_empty_days > 14){
                 p_array_house[i][x].house_color = blue;
             }
         }
@@ -150,7 +152,7 @@ void print_house_color(struct_street* p_array_street, struct_house** p_array_hou
         printf("GadeNavn: %d \n-------------\n", p_array_house[i][i].street_name);
         for (int y = 0; y < p_array_street[i].amount_house_street; ++y){
             if(p_array_house[i][y].house_color == red){
-                printf(RED "House_number: %d\nBin_fill_amount: %d%%\nDays since last empty: %d\n\n" RESET, p_array_house[i][y].house_name, p_array_house[i][y].fill_amount_procent, p_array_house[i][y].last_empty_days);                
+                printf(RED "House_number: %d\nBin_fill_amount: %d%%\nDays since last empty: %d\n\n" RESET, p_array_house[i][y].house_name, p_array_house[i][y].fill_amount_procent, p_array_house[i][y].last_empty_days);
             }
             else if(p_array_house[i][y].house_color == green){
                 printf(GREEN "House_number: %d\nBin_fill_amount: %d%%\nDays since last empty: %d\n\n" RESET, p_array_house[i][y].house_name, p_array_house[i][y].fill_amount_procent, p_array_house[i][y].last_empty_days);
@@ -162,7 +164,7 @@ void print_house_color(struct_street* p_array_street, struct_house** p_array_hou
                 printf(BLUE "House_number: %d\nBin_fill_amount: %d%%\nDays since last empty: %d\n\n" RESET, p_array_house[i][y].house_name, p_array_house[i][y].fill_amount_procent, p_array_house[i][y].last_empty_days);;
             }
         }
-        
+
     }
 }
 
