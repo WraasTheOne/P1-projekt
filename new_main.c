@@ -84,7 +84,7 @@ struct_street *generate_street_array(int amount_street)
 
     struct_street *array_street;
 
-    //srand(time(NULL));
+    srand(time(NULL));
     array_street = malloc(amount_street * sizeof(struct_street));
     for (int i = 0; i < amount_street; ++i)
     {
@@ -184,7 +184,6 @@ struct_street *load_streets()
         printf("Error opening file.\n");
     }
 
-    srand(time(NULL));
 
     for (c = getc(file_streets); c != EOF; c = getc(file_streets))
     {
