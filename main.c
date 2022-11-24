@@ -16,11 +16,6 @@ typedef struct{
     int current_garbage;
 
 
-
-
-
-
-    
 }HOUSEHOLD;
 
 int main(void){
