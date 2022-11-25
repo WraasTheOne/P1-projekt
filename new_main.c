@@ -278,12 +278,13 @@ struct_house **load_houses(struct_street *array_streets)
         array_houses[j] = malloc(array_streets[j].amount_house_street * sizeof(struct_house));
         for (i = 0; i < array_streets[j].amount_house_street; i++)
         {
-            fscanf(file, "%d,%d,%d,%d,%d",
+            fscanf(file, "%d,%d,%d,%d,%d,%d\n",
                    &array_houses[j][i].street_name,
                    &array_houses[j][i].house_name,
                    &array_houses[j][i].fill_amount_procent,
                    &array_houses[j][i].last_empty_days,
-                   &array_houses[j][i].house_color);
+                   &array_houses[j][i].house_color,
+                   &array_houses[j][i].house_include);
         }
     }
 
