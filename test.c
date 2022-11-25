@@ -94,3 +94,8 @@ struct_street *load_streets()
 
     return (array_street);
 }
+
+struct_house **load_houses(){
+
+    
+}
