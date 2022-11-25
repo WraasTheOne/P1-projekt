@@ -7,7 +7,8 @@ int main (void){
 int last_empty_days;
 int fill_amount_procent;
 int pickup_priority = 0;
-
+int street_amount;
+int x;
 //Temporary placeholder for array data
 last_empty_days = 11;
 fill_amount_procent = 59;
