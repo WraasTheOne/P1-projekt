@@ -21,6 +21,7 @@ typedef struct struct_house
 } struct_house;
 
 struct_street *load_streets();
+struct_house **load_houses(struct_street *array_streets);
 
 int recorded = 0;
 
@@ -28,13 +29,16 @@ int main(void)
 {
     int i = 0;
 
-    struct_street *array;
-    array = load_streets();
+    struct_street *array_streets;
+    array_streets = load_streets();
 
     for (i = 0; i < recorded; i++)
     {
-        printf("%d, %d\n", array[i].street_nr, recorded);
+        printf("%d, %d\n", array_streets[i].street_nr, recorded);
     }
+
+    struct_house **array_houses;
+    array_houses = load_houses(array_streets);
 
     return 0;
 }
@@ -69,14 +73,15 @@ struct_street *load_streets()
     rewind(file_streets);
     do
     {
-        reads = fscanf(file_streets,"%d,%d,%d,%d,%d\n",
+        reads = fscanf(file_streets, "%d,%d,%d,%d,%d\n",
                        &array_street[recorded].street_nr,
                        &array_street[recorded].amount_house_street,
                        &array_street[recorded].length_of_street,
                        &array_street[recorded].open_street,
                        &array_street[recorded].distance_start);
 
-        if (reads == 5)recorded++;
+        if (reads == 5)
+            recorded++;
 
         if (reads != 5 && !feof(file_streets))
         {
@@ -95,7 +100,32 @@ struct_street *load_streets()
     return (array_street);
 }
 
-struct_house **load_houses(){
+struct_house **load_houses(struct_street *array_streets)
+{
+    int i;
+    int j;
 
-    
+    FILE *file;
+    file = fopen("houses.csv", "r");
+
+    struct_house **array_houses;
+    array_houses = malloc(recorded * sizeof(struct_house));
+
+    for (j = 0; j < recorded; j++)
+    {
+        array_houses[j] = malloc(array_streets[j].amount_house_street * sizeof(struct_house));
+        for (i = 0; i < array_streets[j].amount_house_street; i++)
+        {
+            fscanf(file, "%d,%d,%d,%d,%d",
+                   &array_houses[j][i].street_name,
+                   &array_houses[j][i].house_name,
+                   &array_houses[j][i].fill_amount_procent,
+                   &array_houses[j][i].last_empty_days,
+                   &array_houses[j][i].house_color);
+        }
+    }
+
+    fclose(file);
+
+    return array_houses;
 }
