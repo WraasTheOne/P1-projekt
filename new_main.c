@@ -34,6 +34,7 @@ struct_house **generate_house_array(int amount_street, int amount_house_total, s
 void assign_color(struct_house **p_array_house, struct_street *p_array_street, int amount_house_total, int amount_street);
 void print_house_color(struct_street* p_array_street, struct_house** p_array_house, int amount_house_total, int amount_street);
 struct_street *load_streets();
+struct_house **load_houses(struct_street *array_streets);
 
 int main(void)
 {
@@ -61,12 +62,9 @@ int main(void)
     else if (choice == 2)
     {
 
-        // p_array_street = load_streets();
-
-        // for(i = 0; i < recorded; i++){
-
-        // }
-        printf("WIP \n");
+        p_array_street = load_streets();
+        p_array_house = load_houses(p_array_street);
+        
         exit(0);
     }
 
@@ -262,4 +260,34 @@ struct_street *load_streets()
     fclose(file_streets);
 
     return (array_street);
+}
+
+struct_house **load_houses(struct_street *array_streets)
+{
+    int i;
+    int j;
+
+    FILE *file;
+    file = fopen("houses.csv", "r");
+
+    struct_house **array_houses;
+    array_houses = malloc(recorded * sizeof(struct_house));
+
+    for (j = 0; j < recorded; j++)
+    {
+        array_houses[j] = malloc(array_streets[j].amount_house_street * sizeof(struct_house));
+        for (i = 0; i < array_streets[j].amount_house_street; i++)
+        {
+            fscanf(file, "%d,%d,%d,%d,%d",
+                   &array_houses[j][i].street_name,
+                   &array_houses[j][i].house_name,
+                   &array_houses[j][i].fill_amount_procent,
+                   &array_houses[j][i].last_empty_days,
+                   &array_houses[j][i].house_color);
+        }
+    }
+
+    fclose(file);
+
+    return array_houses;
 }
