@@ -122,6 +122,8 @@ struct_house **generate_house_array(int amount_street, int amount_house_total, s
             }
         }
     }
+
+
     return (array_house);
 }
 
@@ -280,7 +282,9 @@ struct_house **load_houses(struct_street *array_streets)
 
     for (j = 0; j < amount_street; j++)
     {
+
         array_houses[j] = malloc(array_streets[j].amount_house_street * sizeof(struct_house));
+
         for (i = 0; i < array_streets[j].amount_house_street; i++)
         {
             fscanf(file, "%d,%d,%d,%d,%d,%d\n",
@@ -297,3 +301,4 @@ struct_house **load_houses(struct_street *array_streets)
 
     return array_houses;
 }
+
