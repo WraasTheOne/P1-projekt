@@ -2,13 +2,19 @@
 #include <stdlib.h>
 #include <time.h>
 #define MAXHOUSE 9
-#define RED     "\x1b[31m"
-#define GREEN   "\x1b[32m"
-#define YELLOW  "\x1b[33m"
-#define BLUE    "\x1b[34m"
-#define RESET   "\x1b[0m"
+#define RED "\x1b[31m"
+#define GREEN "\x1b[32m"
+#define YELLOW "\x1b[33m"
+#define BLUE "\x1b[34m"
+#define RESET "\x1b[0m"
 
-enum color{red, green, yellow, blue};
+enum color
+{
+    red,
+    green,
+    yellow,
+    blue
+};
 typedef struct struct_street
 {
     int street_nr;
@@ -30,14 +36,14 @@ typedef struct struct_house
 int recorded = 0;
 
 struct_street *generate_street_array(int amount_street);
-struct_house **generate_house_array(int amount_street, int amount_house_total, struct_street *p_array_street);
-void assign_color(struct_house **p_array_house, struct_street *p_array_street, int amount_house_total, int amount_street);
-void print_house_color(struct_street* p_array_street, struct_house** p_array_house, int amount_house_total, int amount_street);
+struct_house **generate_house_array(int amount_street, int recorded, struct_street *p_array_street);
+void assign_color(struct_house **p_array_house, struct_street *p_array_street, int amount_street);
+void print_house_color(struct_street *p_array_street, struct_house **p_array_house, int amount_street);
 struct_street *load_streets();
 
 int main(void)
 {
-    int amount_house_total = 0;
+    int recorded = 0;
     int i;
     int choice;
     int amount_street = 5;
@@ -47,21 +53,21 @@ int main(void)
     printf("type 1 to generate data and 2 to load data");
     scanf("%d", &choice);
 
-
     if (choice == 1)
     {
         p_array_street = generate_street_array(amount_street);
         // Count total amount of houses to generate house array
         for (i = 0; i < amount_street; ++i)
         {
-            amount_house_total += p_array_street[i].amount_house_street;
+            recorded += p_array_street[i].amount_house_street;
         }
-        p_array_house = generate_house_array(amount_street, amount_house_total, p_array_street);
+        p_array_house = generate_house_array(amount_street, recorded, p_array_street);
     }
     else if (choice == 2)
     {
 
-        // p_array_street = load_streets();
+        p_array_street = load_streets();
+        p_array_house = 
 
         // for(i = 0; i < recorded; i++){
 
@@ -70,10 +76,8 @@ int main(void)
         exit(0);
     }
 
-
-
-    assign_color(p_array_house,p_array_street, amount_house_total, amount_street);
-    print_house_color(p_array_street, p_array_house, amount_house_total, amount_street);
+    assign_color(p_array_house, p_array_street, amount_street);
+    print_house_color(p_array_street, p_array_house, amount_street);
 
     return 0;
 }
@@ -97,7 +101,7 @@ struct_street *generate_street_array(int amount_street)
     return array_street;
 }
 
-struct_house **generate_house_array(int amount_street, int amount_house_total, struct_street *p_array_street)
+struct_house **generate_house_array(int amount_street, int recorded, struct_street *p_array_street)
 {
     struct_house house;
     struct_house **array_house;
@@ -111,8 +115,8 @@ struct_house **generate_house_array(int amount_street, int amount_house_total, s
     {
         for (int x = 0; x < amount_street; ++x)
         {
-            array_house[x] = malloc(amount_house_total * sizeof(house));
-            for (int j = 0; j < amount_house_total; ++j)
+            array_house[x] = malloc(recorded * sizeof(house));
+            for (int j = 0; j < recorded; ++j)
             {
                 array_house[x][j].fill_amount_procent = rand() % 100;
                 array_house[x][j].last_empty_days = rand() % 30;
@@ -123,30 +127,35 @@ struct_house **generate_house_array(int amount_street, int amount_house_total, s
     }
     return (array_house);
 }
-void assign_color(struct_house **p_array_house, struct_street *p_array_street, int amount_house_total, int amount_street)
+
+
+void assign_color(struct_house **p_array_house, struct_street *p_array_street, int amount_street)
 {
     for (int i = 0; i < amount_street; i++)
     {
         for (int x = 0; x < p_array_street[i].amount_house_street; x++)
         {
-            if(p_array_house[i][x].fill_amount_procent < 15)
+            if (p_array_house[i][x].fill_amount_procent < 15)
             {
                 p_array_house[i][x].house_color = red;
             }
-            else if(p_array_house[i][x].fill_amount_procent > 85){
+            else if (p_array_house[i][x].fill_amount_procent > 85)
+            {
                 p_array_house[i][x].house_color = green;
             }
-            else if(p_array_house[i][x].fill_amount_procent > 15 && p_array_house[i][x].fill_amount_procent < 85 && p_array_house[i][x].last_empty_days < 14){
+            else if (p_array_house[i][x].fill_amount_procent > 15 && p_array_house[i][x].fill_amount_procent < 85 && p_array_house[i][x].last_empty_days < 14)
+            {
                 p_array_house[i][x].house_color = yellow;
             }
-             else if(p_array_house[i][x].fill_amount_procent > 15 && p_array_house[i][x].fill_amount_procent < 85 && p_array_house[i][x].last_empty_days > 14){
+            else if (p_array_house[i][x].fill_amount_procent > 15 && p_array_house[i][x].fill_amount_procent < 85 && p_array_house[i][x].last_empty_days > 14)
+            {
                 p_array_house[i][x].house_color = blue;
             }
         }
     }
 }
 
-void print_house_color(struct_street *p_array_street, struct_house **p_array_house, int amount_house_total, int amount_street)
+void print_house_color(struct_street *p_array_street, struct_house **p_array_house, int amount_street)
 {
     int x;
     int z;
@@ -175,7 +184,7 @@ void print_house_color(struct_street *p_array_street, struct_house **p_array_hou
             }
         }
         printf("\nWhich houses to include? (press enter between each house and continue with 0\n");
-        while(x != -1)
+        while (x != -1)
         {
             scanf("%d", &x);
             x = x - 1;
@@ -238,14 +247,15 @@ struct_street *load_streets()
     rewind(file_streets);
     do
     {
-        reads = fscanf(file_streets,"%d,%d,%d,%d,%d\n",
+        reads = fscanf(file_streets, "%d,%d,%d,%d,%d\n",
                        &array_street[recorded].street_nr,
                        &array_street[recorded].amount_house_street,
                        &array_street[recorded].length_of_street,
                        &array_street[recorded].open_street,
                        &array_street[recorded].distance_start);
 
-        if (reads == 5)recorded++;
+        if (reads == 5)
+            recorded++;
 
         if (reads != 5 && !feof(file_streets))
         {
