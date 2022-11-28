@@ -39,11 +39,11 @@ int main(void)
     int amount_house_total = 0;
     int i;
     int choice;
-    int amount_street = 5;
+    int amount_street = 15;
     struct_street *p_array_street;
     struct_house **p_array_house;
 
-    printf("type 1 to generate data and 2 to load data");
+    //printf("så iover den hac ,andas djasjd kjkajs data");
     choice = 1;
 
 
@@ -57,9 +57,18 @@ int main(void)
         }
         p_array_house = generate_house_array(amount_street, amount_house_total, p_array_street);
 
-        assign_color(p_array_house, p_array_street, amount_house_total, amount_street);
-        print_house_color(p_array_street, p_array_house, amount_house_total, amount_street);
 
+
+
+        assign_color(p_array_house, p_array_street, amount_house_total, amount_street);
+        //print_house_color(p_array_street, p_array_house, amount_house_total, amount_street);
+        for (int j = 0; j < amount_street; ++j) {
+            for (int k = 0; k < p_array_street[j].amount_house_street; ++k)
+            {
+                printf("%d,%d,%d,%d,%d\n", p_array_house[j][k].street_name,p_array_house[j][k].house_name, p_array_house[j][k].fill_amount_procent, p_array_house[j][k].last_empty_days, p_array_house[j][k].house_color);
+            }
+
+        }
     }
     else if (choice == 2)
     {
@@ -184,7 +193,6 @@ struct_street *load_streets()
         printf("Error opening file.\n");
     }
 
-    srand(time(NULL));
 
     for (c = getc(file_streets); c != EOF; c = getc(file_streets))
     {
