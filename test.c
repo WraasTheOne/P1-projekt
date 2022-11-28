@@ -10,7 +10,6 @@ typedef struct struct_street
     int open_street;
     int distance_start;
 } struct_street;
-
 typedef struct struct_house
 {
     int street_name;
@@ -18,6 +17,7 @@ typedef struct struct_house
     int fill_amount_procent;
     int last_empty_days;
     int house_color;
+    int house_include;
 } struct_house;
 
 struct_street *load_streets();
@@ -129,3 +129,5 @@ struct_house **load_houses(struct_street *array_streets)
 
     return array_houses;
 }
+
+
