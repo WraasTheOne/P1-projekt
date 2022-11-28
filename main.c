@@ -68,7 +68,9 @@ int main(void)
         printf("WIP \n");
         exit(0);
     }
-
+    
+    
+    
 
 
     assign_color(p_array_house, amount_house_total, amount_street);
