@@ -7,7 +7,7 @@
 #define YELLOW  "\x1b[33m"
 #define BLUE    "\x1b[34m"
 #define RESET   "\x1b[0m"
-
+//test af main
 enum color{red, green, yellow, blue};
 typedef struct struct_street
 {
