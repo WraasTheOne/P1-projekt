@@ -12,7 +12,7 @@
 #define BLUE    "\x1b[34m"
 #define RESET   "\x1b[0m"
 
-enum color{red, green, yellow, blue};
+typedef enum color{red, green, yellow, blue} color;
 typedef struct struct_street
 {
     int street_nr;
@@ -27,8 +27,8 @@ typedef struct struct_house
     int house_name;
     int fill_amount_procent;
     int last_empty_days;
-    int house_color;
     int house_include;
+    int house_color;
 } struct_house;
 
 int amount_street = 0;
@@ -54,7 +54,7 @@ int main(void)
 
     if (choice == 1)
     {
-        amount_street = 5;
+        amount_street = 3;
         p_array_street = generate_street_array(amount_street);
         // Count total amount of houses to generate house array
         for (i = 0; i < amount_street; ++i)
@@ -65,12 +65,10 @@ int main(void)
     }
     else if (choice == 2)
     {
-        printf("hej");
         p_array_street = load_streets();
          for (i = 0; i < amount_street; ++i)
         {
             amount_house_total += p_array_street[i].amount_house_street;
-            printf("hej");
         }
         p_array_house = load_houses(p_array_street);
     }
@@ -156,7 +154,7 @@ void assign_color(struct_house **p_array_house, struct_street *p_array_street, i
 }
 
 void print_house_color(struct_street *p_array_street, struct_house **p_array_house, int amount_house_total, int amount_street)
-{
+{ 
     int x;
     int z;
     for (int i = 0; i < amount_street; i++)
@@ -164,7 +162,7 @@ void print_house_color(struct_street *p_array_street, struct_house **p_array_hou
         printf("GadeNavn: %d \n-------------\n", p_array_house[i][i].street_name);
         for (int y = 0; y < p_array_street[i].amount_house_street; ++y)
         {
-            x = 100;
+            x = 0;
             if (p_array_house[i][y].house_color == red)
             {
                 printf(RED "House_number: %d\nBin_fill_amount: %d%%\nDays since last empty: %d\n\n" RESET, p_array_house[i][y].house_name, p_array_house[i][y].fill_amount_procent, p_array_house[i][y].last_empty_days);
@@ -184,13 +182,17 @@ void print_house_color(struct_street *p_array_street, struct_house **p_array_hou
             }
         }
         printf("\nWhich houses to include? (press enter between each house and continue with 0\n");
-        while(x != -1)
+
+        do
         {
             scanf("%d", &x);
             x = x - 1;
             p_array_house[i][x].house_include = 1;
-        }
+        } while (x != -1);
+        
     }
+    
+
     for (int i = 0; i < amount_street; i++)
     {
         printf("GadeNavn: %d \n-------------\n", p_array_house[i][i].street_name);
@@ -270,13 +272,14 @@ struct_street *load_streets()
 
     fclose(file_streets);
 
-    return (array_street);
+    return (array_street); 
 }
 
 struct_house **load_houses(struct_street *array_streets)
 {
     int i;
     int j;
+
 
     FILE *file;
     file = fopen("houses.csv", "r");
@@ -300,7 +303,6 @@ struct_house **load_houses(struct_street *array_streets)
                    &array_houses[j][i].house_include);
         }
     }
-
     fclose(file);
 
     return array_houses;
