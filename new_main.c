@@ -54,7 +54,7 @@ int main(void)
 
     if (choice == 1)
     {
-        amount_street = 3;
+        amount_street = 15;
         p_array_street = generate_street_array(amount_street);
         // Count total amount of houses to generate house array
         for (i = 0; i < amount_street; ++i)
@@ -228,7 +228,7 @@ struct_street *load_streets()
 
     FILE *file_streets;
 
-    file_streets = fopen("streets.csv", "r");
+    file_streets = fopen("streets2.csv", "r");
 
     if (file_streets == NULL)
     {
@@ -282,7 +282,7 @@ struct_house **load_houses(struct_street *array_streets)
 
 
     FILE *file;
-    file = fopen("houses.csv", "r");
+    file = fopen("houses2.csv", "r");
 
     struct_house **array_houses;
     array_houses = malloc(amount_street * sizeof(struct_house));
@@ -294,13 +294,11 @@ struct_house **load_houses(struct_street *array_streets)
 
         for (i = 0; i < array_streets[j].amount_house_street; i++)
         {
-            fscanf(file, "%d,%d,%d,%d,%d,%d\n",
+            fscanf(file, "%d,%d,%d,%d\n",
                    &array_houses[j][i].street_name,
                    &array_houses[j][i].house_name,
                    &array_houses[j][i].fill_amount_procent,
-                   &array_houses[j][i].last_empty_days,
-                   &array_houses[j][i].house_color,
-                   &array_houses[j][i].house_include);
+                   &array_houses[j][i].last_empty_days);
         }
     }
     fclose(file);
