@@ -109,8 +109,8 @@ struct_house **generate_house_array(int amount_street, int amount_house_total, s
     {
         for (int x = 0; x < amount_street; ++x)
         {
-            array_house[x] = malloc(amount_house_total * sizeof(house));
-            for (int j = 0; j < amount_house_total; ++j)
+            array_house[x] = malloc(p_array_street[x].amount_house_street * sizeof(house));
+            for (int j = 0; j < p_array_street[x].amount_house_street; ++j)
             {
                 array_house[x][j].fill_amount_procent = rand() % 100;
                 array_house[x][j].last_empty_days = rand() % 30;
