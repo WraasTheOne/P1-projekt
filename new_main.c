@@ -54,7 +54,7 @@ int main(void)
 
     if (choice == 1)
     {
-        amount_street = 15;
+        amount_street = 7;
         p_array_street = generate_street_array(amount_street);
         // Count total amount of houses to generate house array
         for (i = 0; i < amount_street; ++i)
@@ -72,6 +72,8 @@ int main(void)
         }
         p_array_house = load_houses(p_array_street);
     }
+
+    
 
 
 
@@ -124,8 +126,6 @@ struct_house **generate_house_array(int amount_street, int amount_house_total, s
             }
         }
     }
-
-
     return (array_house);
 }
 
@@ -195,7 +195,7 @@ void print_house_color(struct_street *p_array_street, struct_house **p_array_hou
 
     for (int i = 0; i < amount_street; i++)
     {
-        printf("GadeNavn: %d \n-------------\n", p_array_house[i][i].street_name);
+        printf("GadeNavn: %d \n-------------\n", p_array_street[i].street_nr);
         for (int y = 0; y < p_array_street[i].amount_house_street; ++y)
         {
             if (p_array_house[i][y].house_color == red && p_array_house[i][y].house_include == 1)
@@ -284,13 +284,14 @@ struct_house **load_houses(struct_street *array_streets)
     FILE *file;
     file = fopen("houses2.csv", "r");
 
+    struct_house house;
     struct_house **array_houses;
-    array_houses = malloc(amount_street * sizeof(struct_house));
+    array_houses = malloc(amount_street * sizeof(house));
 
     for (j = 0; j < amount_street; j++)
     {
 
-        array_houses[j] = malloc(array_streets[j].amount_house_street * sizeof(struct_house));
+        array_houses[j] = malloc(array_streets[j].amount_house_street * sizeof(house));
 
         for (i = 0; i < array_streets[j].amount_house_street; i++)
         {
