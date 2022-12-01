@@ -96,7 +96,7 @@ struct_street *generate_street_array(int amount_street)
     int i;
     struct_street street;
     struct_street *array_street;
-
+//comment
     srand(time(NULL));
     array_street = malloc(amount_street * sizeof(street));
     for (i = 0; i < amount_street; ++i)
