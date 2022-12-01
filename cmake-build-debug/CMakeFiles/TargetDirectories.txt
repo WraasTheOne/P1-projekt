@@ -1,3 +1,4 @@
 C:/Users/alexa/SanderPro/P1-projekt/cmake-build-debug/CMakeFiles/P1_projekt.dir
+C:/Users/alexa/SanderPro/P1-projekt/cmake-build-debug/CMakeFiles/1_projekt.dir
 C:/Users/alexa/SanderPro/P1-projekt/cmake-build-debug/CMakeFiles/edit_cache.dir
 C:/Users/alexa/SanderPro/P1-projekt/cmake-build-debug/CMakeFiles/rebuild_cache.dir

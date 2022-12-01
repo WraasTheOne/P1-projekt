@@ -48,40 +48,35 @@ int main(int argc,char* argv[])
     struct_house **p_array_house;
 
     printf("type 1 to generate data and 2 to load data");
-    choice = 1;
+    scanf("%d", &choice);
 
-
-    if (choice == 1)
-    {
-        p_array_street = generate_street_array(amount_street);
-        // Count total amount of houses to generate house array
-        for (i = 0; i < amount_street; ++i)
-        {
-            amount_house_total += p_array_street[i].amount_house_street;
-        }
-        p_array_house = generate_house_array(amount_street, amount_house_total, p_array_street);
-
-        assign_color(p_array_house, p_array_street, amount_house_total, amount_street);
-        print_house_color(p_array_street, p_array_house, amount_house_total, amount_street);
+    switch (choice) {
+        case 1:
+            amount_street = 5;
+            p_array_street = generate_street_array(amount_street);
+            // Count total amount of houses to generate house array
+            for (i = 0; i < amount_street; ++i)
+            {
+                amount_house_total += p_array_street[i].amount_house_street;
+            }
+            p_array_house = generate_house_array(amount_street, amount_house_total, p_array_street);
+            break;
+        case 2:
+            p_array_street = load_streets();
+            for (i = 0; i < amount_street; ++i)
+            {
+                amount_house_total += p_array_street[i].amount_house_street;
+            }
+            p_array_house = load_houses(p_array_street);
+            break;
 
     }
-    else if (choice == 2)
-    {
-
-        // p_array_street = load_streets();
-
-        // for(i = 0; i < recorded; i++){
-
-        // }
-        printf("WIP \n");
-        exit(0);
-    }
-
-
-
 
     return 0;
 }
+
+int count_houses_total()
+
 
 struct_street *generate_street_array(int amount_street)
 {
