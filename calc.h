@@ -37,8 +37,21 @@ int cal_houses(int amount_streets, STRUCT_HOUSE **p_array_house, STRUCT_STREET *
     return house_counter;
 }
 
-double cal_time_saved()
-{
+double cal_time_saved(int amount_streets, STRUCT_HOUSE **p_array_house, STRUCT_STREET *p_array_street)
+{   
+    double time_counter;
+    for (int j = 0; j < amount_streets; ++j)
+    {
+        if(p_array_street[j].street_include == 1){
+            time_counter += 2.15;
+        }
+        for (int k = 0; k < p_array_street[j].amount_house_street; ++k)
+        {
+            if(p_array_house[j][k].house_include == 1 ){
+                time_counter += 1;
+            }
+        }
+    }
 
     return 0;
 }
