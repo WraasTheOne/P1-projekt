@@ -54,7 +54,7 @@ int main(void)
 
     if (choice == 1)
     {
-        amount_street = 15;
+        amount_street = 5;
         p_array_street = generate_street_array(amount_street);
         // Count total amount of houses to generate house array
         for (i = 0; i < amount_street; ++i)
@@ -73,6 +73,22 @@ int main(void)
         p_array_house = load_houses(p_array_street);
     }
 
+    // for (i = 0; i < amount_street; i++)
+    // {
+    //     printf("%d,%d,%d,%d,%d\n", p_array_street[i].street_nr
+    //                     ,p_array_street[i].amount_house_street
+    //                     ,p_array_street[i].length_of_street
+    //                     ,p_array_street[i].open_street
+    //                     ,p_array_street[i].distance_start );
+    // }
+    
+    // for (int i = 0; i < amount_street; i++)
+    // {
+    //     for(int k = 0; k <= p_array_street[i].amount_house_street; k++){
+    //         printf("%d,%d,%d,%d\n",p_array_house[i][k].street_name
+    //         ,p_array_house[i][k].house_name, p_array_house[i][k].fill_amount_procent, p_array_house[i][k].last_empty_days);}
+    // }
+    
     
 
 
@@ -185,7 +201,7 @@ void print_house_color(struct_street *p_array_street, struct_house **p_array_hou
 
         do
         {
-            scanf("%d", &x);
+            scanf(" %d", &x);
             x = x - 1;
             p_array_house[i][x].house_include = 1;
         } while (x != -1);
@@ -234,8 +250,6 @@ struct_street *load_streets()
     {
         printf("Error opening file.\n");
     }
-
-    srand(time(NULL));
 
     for (c = getc(file_streets); c != EOF; c = getc(file_streets))
     {
@@ -293,7 +307,7 @@ struct_house **load_houses(struct_street *array_streets)
 
         array_houses[j] = malloc(array_streets[j].amount_house_street * sizeof(house));
 
-        for (i = 0; i < array_streets[j].amount_house_street; i++)
+        for (i = 0; i <= array_streets[j].amount_house_street; i++)
         {
             fscanf(file, "%d,%d,%d,%d\n",
                    &array_houses[j][i].street_name,
