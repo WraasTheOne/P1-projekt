@@ -4,6 +4,8 @@
 
 
 #define MAXHOUSE 9
+#define TIMESAVED_HOUSE_SEC 180
+#define TIMESAVED_STREET_SEC 2000
 
 
 #define RED     "\x1b[31m"
@@ -13,14 +15,15 @@
 #define RESET   "\x1b[0m"
 
 typedef enum color{red, green, yellow, blue} color;
-typedef struct struct_street
+typedef struct STRUCT_STREET
 {
     int street_nr;
     int amount_house_street;
     int length_of_street;
     int open_street;
     int distance_start;
-} struct_street;
+    int street_include
+} STRUCT_STREET;
 typedef struct struct_house
 {
     int street_name;
@@ -33,19 +36,21 @@ typedef struct struct_house
 
 int amount_street = 0;
 
-struct_street *generate_street_array(int amount_street);
-struct_house **generate_house_array(int amount_street, int amount_house_total, struct_street *p_array_street);
-void assign_color(struct_house **p_array_house, struct_street *p_array_street, int amount_house_total, int amount_street);
-void print_house_color(struct_street* p_array_street, struct_house** p_array_house, int amount_house_total, int amount_street);
-struct_street *load_streets();
-struct_house **load_houses(struct_street *array_streets);
+
+STRUCT_STREET *generate_street_array(int amount_street);
+struct_house **generate_house_array(int amount_street, int amount_house_total, STRUCT_STREET *p_array_street);
+void assign_color(STRUCT_STREET* p_array_street, struct_house** p_array_house, int amount_house_total, int amount_street);
+void print_house_color(STRUCT_STREET* p_array_street, struct_house** p_array_house, int amount_house_total, int amount_street);
+void calculate_savings(STRUCT_STREET* p_array_street, struct_house** p_array_house, int amount_house_total, int amount_street);
+STRUCT_STREET *load_streets();
+struct_house **load_houses(STRUCT_STREET *array_streets);
 
 int main(void)
 {
     int amount_house_total = 0;
     int i;
     int choice;
-    struct_street *p_array_street;
+    STRUCT_STREET *p_array_street;
     struct_house **p_array_house;
 
     printf("type 1 to generate data and 2 to load data");
@@ -73,7 +78,6 @@ int main(void)
         p_array_house = load_houses(p_array_street);
     }
 
-    
 
 
 
@@ -83,11 +87,11 @@ int main(void)
     return 0;
 }
 
-struct_street *generate_street_array(int amount_street)
+STRUCT_STREET *generate_street_array(int amount_street)
 {
     int i;
-    struct_street street;
-    struct_street *array_street;
+    STRUCT_STREET street;
+    STRUCT_STREET *array_street;
 
     srand(time(NULL));
     array_street = malloc(amount_street * sizeof(street));
@@ -102,7 +106,7 @@ struct_street *generate_street_array(int amount_street)
     return array_street;
 }
 
-struct_house **generate_house_array(int amount_street, int amount_house_total, struct_street *p_array_street)
+struct_house **generate_house_array(int amount_street, int amount_house_total, STRUCT_STREET *p_array_street)
 {
     struct_house house;
     struct_house **array_house;
@@ -130,7 +134,7 @@ struct_house **generate_house_array(int amount_street, int amount_house_total, s
 }
 
 
-void assign_color(struct_house **p_array_house, struct_street *p_array_street, int amount_house_total, int amount_street)
+void assign_color(STRUCT_STREET* p_array_street, struct_house** p_array_house, int amount_house_total, int amount_street)
 {
     for (int i = 0; i < amount_street; i++)
     {
@@ -153,7 +157,7 @@ void assign_color(struct_house **p_array_house, struct_street *p_array_street, i
     }
 }
 
-void print_house_color(struct_street *p_array_street, struct_house **p_array_house, int amount_house_total, int amount_street)
+void print_house_color(STRUCT_STREET *p_array_street, struct_house **p_array_house, int amount_house_total, int amount_street)
 { 
     int x;
     int z;
@@ -219,12 +223,47 @@ void print_house_color(struct_street *p_array_street, struct_house **p_array_hou
     }
 }
 
-struct_street *load_streets()
+void calculate_savings(STRUCT_STREET* p_array_street, struct_house** p_array_house, int amount_house_total, int amount_street){
+    int houses_skipped = 0;
+    int streets_skipped = 0;
+
+// Detect if street should be included
+    for(int i = 0; i < amount_street; i++){
+        for(int y = 0; y < p_array_street[i].amount_house_street; y++){
+            if(p_array_house[i][y].house_include == 1){
+                p_array_street[i].street_include = 1;
+                i++;
+            } 
+        }
+    }
+// Increment house only if the street is included, and increment street if entire street is not included
+    for(int i = 0; i < amount_street; i++){
+        if(p_array_street[i].street_include == 0){
+            streets_skipped++;
+            i++;
+        }
+        for(int y = 0; y < p_array_street[i].amount_house_street; y++){
+            if(p_array_house[i][y].house_include == 0){
+                houses_skipped++;
+            }
+        }
+    }    
+    printf("Houses skipped:%d\nStreets skipped:%d\n");
+}
+void open_street_savings(){
+
+}
+
+void print_savings(){
+
+}
+
+STRUCT_STREET *load_streets()
 {
     int i, count = 0, reads = 0;
     char c;
-    struct_street street;
-    struct_street *array_street;
+    STRUCT_STREET street;
+    STRUCT_STREET *array_street;
 
     FILE *file_streets;
 
@@ -275,7 +314,7 @@ struct_street *load_streets()
     return (array_street); 
 }
 
-struct_house **load_houses(struct_street *array_streets)
+struct_house **load_houses(STRUCT_STREET *array_streets)
 {
     int i;
     int j;
@@ -307,3 +346,4 @@ struct_house **load_houses(struct_street *array_streets)
     return array_houses;
 }
 
+// beregning af udledt co2

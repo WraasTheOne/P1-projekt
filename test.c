@@ -131,3 +131,23 @@ struct_house **load_houses(struct_street *array_streets)
 }
 
 
+
+
+
+
+
+ // for (i = 0; i < amount_street; i++)
+    // {
+    //     printf("%d,%d,%d,%d,%d\n", p_array_street[i].street_nr
+    //                     ,p_array_street[i].amount_house_street
+    //                     ,p_array_street[i].length_of_street
+    //                     ,p_array_street[i].open_street
+    //                     ,p_array_street[i].distance_start );
+    // }
+    
+    // for (int i = 0; i < amount_street; i++)
+    // {
+    //     for(int k = 0; k <= p_array_street[i].amount_house_street; k++){
+    //         printf("%d,%d,%d,%d\n",p_array_house[i][k].street_name
+    //         ,p_array_house[i][k].house_name, p_array_house[i][k].fill_amount_procent, p_array_house[i][k].last_empty_days);}
+    // }
