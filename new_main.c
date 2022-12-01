@@ -203,7 +203,12 @@ void print_house_color(struct_street *p_array_street, struct_house **p_array_hou
         {
             scanf(" %d", &x);
             x = x - 1;
-            p_array_house[i][x].house_include = 1;
+            if (x < 0)
+            {
+                break;
+            }else{
+                p_array_house[i][x].house_include = 1;
+            }
         } while (x != -1);
         
     }
@@ -214,22 +219,41 @@ void print_house_color(struct_street *p_array_street, struct_house **p_array_hou
         printf("GadeNavn: %d \n-------------\n", p_array_street[i].street_nr);
         for (int y = 0; y < p_array_street[i].amount_house_street; ++y)
         {
+            // if (p_array_house[i][y].house_color == red && p_array_house[i][y].house_include == 1)
+            // {
+            //     printf(RED "House_number: %d\nBin_fill_amount: %d%%\nDays since last empty: %d\n\n" RESET, p_array_house[i][y].house_name, p_array_house[i][y].fill_amount_procent, p_array_house[i][y].last_empty_days);
+            // }
+
+            // else if (p_array_house[i][y].house_color == green && p_array_house[i][y].house_include == 1)
+            // {
+            //     printf(GREEN "House_number: %d\nBin_fill_amount: %d%%\nDays since last empty: %d\n\n" RESET, p_array_house[i][y].house_name, p_array_house[i][y].fill_amount_procent, p_array_house[i][y].last_empty_days);
+            // }
+            // else if (p_array_house[i][y].house_color == yellow && p_array_house[i][y].house_include == 1)
+            // {
+            //     printf(YELLOW "House_number: %d\nStreet number: %d%%\nBin_fill_amount: %d%%\nDays since last empty: %d\n\n" RESET, p_array_house[i][y].house_name, p_array_house[i][y].street_name ,p_array_house[i][y].fill_amount_procent, p_array_house[i][y].last_empty_days);
+            // }
+            // else if (p_array_house[i][y].house_color == blue && p_array_house[i][y].house_include == 1)
+            // {
+            //     printf(BLUE "House_number: %d\nBin_fill_amount: %d%%\nDays since last empty: %d\n\n" RESET, p_array_house[i][y].house_name, p_array_house[i][y].fill_amount_procent, p_array_house[i][y].last_empty_days);
+            // }
+
+
             if (p_array_house[i][y].house_color == red && p_array_house[i][y].house_include == 1)
             {
-                printf(RED "House_number: %d\nBin_fill_amount: %d%%\nDays since last empty: %d\n\n" RESET, p_array_house[i][y].house_name, p_array_house[i][y].fill_amount_procent, p_array_house[i][y].last_empty_days);
+                printf(RED "Street number: %d\nHouse_number: %d\nBin_fill_amount: %d%%\nDays since last empty: %d\n\n" RESET, p_array_house[i][y].street_name, p_array_house[i][y].house_name,p_array_house[i][y].fill_amount_procent, p_array_house[i][y].last_empty_days);
             }
 
             else if (p_array_house[i][y].house_color == green && p_array_house[i][y].house_include == 1)
             {
-                printf(GREEN "House_number: %d\nBin_fill_amount: %d%%\nDays since last empty: %d\n\n" RESET, p_array_house[i][y].house_name, p_array_house[i][y].fill_amount_procent, p_array_house[i][y].last_empty_days);
+                printf(GREEN "Street number: %d\nHouse_number: %d\nBin_fill_amount: %d%%\nDays since last empty: %d\n\n" RESET, p_array_house[i][y].street_name, p_array_house[i][y].house_name,p_array_house[i][y].fill_amount_procent, p_array_house[i][y].last_empty_days);
             }
             else if (p_array_house[i][y].house_color == yellow && p_array_house[i][y].house_include == 1)
             {
-                printf(YELLOW "House_number: %d\nBin_fill_amount: %d%%\nDays since last empty: %d\n\n" RESET, p_array_house[i][y].house_name, p_array_house[i][y].fill_amount_procent, p_array_house[i][y].last_empty_days);
+                printf(YELLOW "Street number: %d\nHouse_number: %d\nBin_fill_amount: %d%%\nDays since last empty: %d\n\n" RESET, p_array_house[i][y].street_name, p_array_house[i][y].house_name,p_array_house[i][y].fill_amount_procent, p_array_house[i][y].last_empty_days);
             }
             else if (p_array_house[i][y].house_color == blue && p_array_house[i][y].house_include == 1)
             {
-                printf(BLUE "House_number: %d\nBin_fill_amount: %d%%\nDays since last empty: %d\n\n" RESET, p_array_house[i][y].house_name, p_array_house[i][y].fill_amount_procent, p_array_house[i][y].last_empty_days);
+                printf(BLUE "Street number: %d\nHouse_number: %d\nBin_fill_amount: %d%%\nDays since last empty: %d\n\n" RESET,p_array_house[i][y].street_name, p_array_house[i][y].house_name,p_array_house[i][y].fill_amount_procent, p_array_house[i][y].last_empty_days);
             }
         }
     }
@@ -309,11 +333,12 @@ struct_house **load_houses(struct_street *array_streets)
 
         for (i = 0; i <= array_streets[j].amount_house_street; i++)
         {
-            fscanf(file, "%d,%d,%d,%d\n",
+            fscanf(file, "%d,%d,%d,%d,%d\n",
                    &array_houses[j][i].street_name,
                    &array_houses[j][i].house_name,
                    &array_houses[j][i].fill_amount_procent,
-                   &array_houses[j][i].last_empty_days);
+                   &array_houses[j][i].last_empty_days,
+                   &array_houses[j][i].house_include);
         }
     }
     fclose(file);
