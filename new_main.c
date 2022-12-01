@@ -164,7 +164,7 @@ void assign_color(STRUCT_HOUSE **p_array_house, STRUCT_STREET *p_array_street, i
 void print_house_color(STRUCT_STREET *p_array_street, STRUCT_HOUSE **p_array_house, int amount_house_total, int amount_street)
 { 
     int x;
-    int z;
+
     for (int i = 0; i < amount_street; i++)
     {
         printf("GadeNavn: %d \n-------------\n", p_array_street[i].street_nr);
@@ -239,7 +239,7 @@ void print_output(STRUCT_STREET *p_array_street, STRUCT_HOUSE **p_array_house, i
 
 STRUCT_STREET *load_streets()
 {
-    int i, count = 0, reads = 0;
+    int count = 0, reads = 0;
     char c;
     STRUCT_STREET street;
     STRUCT_STREET *array_street;
