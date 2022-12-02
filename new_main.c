@@ -6,7 +6,7 @@
 
 typedef enum color{red, green, yellow, blue} color;
 
-#define MAXHOUSE 9
+#define MAXHOUSE 8
 
 
 #define RED     "\x1b[31m"
@@ -32,6 +32,9 @@ int main(void)
     int i;
     int included_houses;
     int choice;
+    double time_counter = 0;
+    double total_distance_short;
+    double total_distance_long;
     STRUCT_STREET *p_array_street;
     STRUCT_HOUSE **p_array_house;
 
@@ -60,33 +63,25 @@ int main(void)
         p_array_house = load_houses(p_array_street);
     }
 
-    // for (i = 0; i < amount_street; i++)
-    // {
-    //     printf("%d,%d,%d,%d,%d\n", p_array_street[i].street_nr
-    //                     ,p_array_street[i].amount_house_street
-    //                     ,p_array_street[i].length_of_street
-    //                     ,p_array_street[i].open_street
-    //                     ,p_array_street[i].distance_start );
-    // }
-    
-    // for (int i = 0; i < amount_street; i++)
-    // {
-    //     for(int k = 0; k <= p_array_street[i].amount_house_street; k++){
-    //         printf("%d,%d,%d,%d\n",p_array_house[i][k].street_name
-    //         ,p_array_house[i][k].house_name, p_array_house[i][k].fill_amount_procent, p_array_house[i][k].last_empty_days);}
-    // }
-    
-    
-
-    
 
     assign_color(p_array_house,p_array_street, amount_house_total, amount_street);
     print_house_color(p_array_street, p_array_house, amount_house_total, amount_street);
+
+
     cal_inc_streets(amount_street, p_array_house, p_array_street);
+
     included_houses = cal_houses(amount_street, p_array_house, p_array_street);
-    printf("\n%d\n", included_houses);
+
+    time_counter = cal_time_saved(amount_street, p_array_house, p_array_street);
+    
+
     print_output(p_array_street, p_array_house, amount_house_total, amount_street);
 
+    total_distance_short = cal_path(amount_street, p_array_house, p_array_street);
+    total_distance_long = cal_ordenary_path(amount_street, p_array_house, p_array_street);
+    printf("total distance = %lf, long distance = %lf\n", total_distance_short, total_distance_long);
+
+    
 
     return 0;
 }
@@ -104,7 +99,7 @@ STRUCT_STREET *generate_street_array(int amount_street)
         array_street[i].street_nr = (i+1);
         array_street[i].amount_house_street = 1 + rand() % MAXHOUSE;
         array_street[i].length_of_street = 1 + rand() % 20;
-        array_street[i].distance_start = rand() % 20;
+        array_street[i].distance_start = 1 +rand() % 20;
         array_street[i].open_street = rand() & 1;
     }
     return array_street;
@@ -167,7 +162,8 @@ void print_house_color(STRUCT_STREET *p_array_street, STRUCT_HOUSE **p_array_hou
 
     for (int i = 0; i < amount_street; i++)
     {
-        printf("GadeNavn: %d \n-------------\n", p_array_street[i].street_nr);
+        
+        printf("GadeNavn: %d\nDistFromstart: %d \n-------------\n", p_array_street[i].street_nr, p_array_street[i].distance_start );
         for (int y = 0; y < p_array_street[i].amount_house_street; ++y)
         {
             x = 0;
@@ -211,7 +207,7 @@ void print_output(STRUCT_STREET *p_array_street, STRUCT_HOUSE **p_array_house, i
     for (int i = 0; i < amount_street; i++)
     {
         if(p_array_street[i].street_include == 1){
-            printf("GadeNavn: %d \n-------------\n", p_array_street[i].street_nr);
+            printf("GadeNavn: %d\nDistFromstart: %d\n Street lenght %d \n-------------\n", p_array_street[i].street_nr, p_array_street[i].distance_start, p_array_street[i].length_of_street);
         for (int y = 0; y < p_array_street[i].amount_house_street; ++y)
         {
             if (p_array_house[i][y].house_color == red && p_array_house[i][y].house_include == 1)
