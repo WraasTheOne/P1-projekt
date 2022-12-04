@@ -73,7 +73,8 @@ int main(void)
     included_houses = cal_houses(amount_street, p_array_house, p_array_street);
 
     time_counter = cal_time_saved(amount_street, p_array_house, p_array_street);
-    
+
+
 
     print_output(p_array_street, p_array_house, amount_house_total, amount_street);
 

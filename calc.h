@@ -24,7 +24,7 @@ void cal_inc_streets(int amount_streets, STRUCT_HOUSE **p_array_house, STRUCT_ST
 
 int cal_houses(int amount_streets, STRUCT_HOUSE **p_array_house, STRUCT_STREET *p_array_street)
 {
-    int house_counter;
+    int house_counter = 0;
 
     for (int j = 0; j < amount_streets; ++j)
     {
