@@ -55,6 +55,8 @@ double cal_time(int amount_streets, STRUCT_HOUSE **p_array_house, STRUCT_STREET 
     return time_counter;
 
 }
+
+
 double cal_time_saved(int amount_streets, STRUCT_HOUSE **p_array_house, STRUCT_STREET *p_array_street)
 {
     double time_counter = 0;
@@ -168,6 +170,5 @@ void result(double total_distance_improved, double total_distance, double time_s
     printf(BLUE "Time improvement in percent = %.2lf%%\n" RESET, percent_time);
     printf(BLUE "Houses skipped in percent = %.2lf%%\n" RESET, percent_houses_inc);
     printf(BLUE"Streets skipped in percent = %.2lf%%\n" RESET, percent_streets_inc);
-
 
 }
