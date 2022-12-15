@@ -7,7 +7,7 @@
 typedef enum color{red, green, yellow, blue} color;
 
 #define MAXHOUSE 8
-
+#define TIME_PER_HOUSE 0.907963595
 typedef struct STRUCT_STREET
 {
     int street_no;
@@ -34,7 +34,7 @@ STRUCT_STREET *load_streets(int *amount_streets);
 STRUCT_HOUSE **generate_house_array(int amount_street, int amount_house_total, STRUCT_STREET *p_array_street); 
 STRUCT_HOUSE **load_houses(STRUCT_STREET *array_streets, int amount_street);
 void assign_color(STRUCT_HOUSE **p_array_house, STRUCT_STREET *p_array_street, int amount_house_total, int amount_street);
-void print_house_color(STRUCT_STREET* p_array_street, STRUCT_HOUSE** p_array_house, int amount_house_total, int amount_street);
+void print_prompt_house_color(STRUCT_STREET* p_array_street, STRUCT_HOUSE** p_array_house, int amount_house_total, int amount_street);
 void print_output(STRUCT_STREET *p_array_street, STRUCT_HOUSE **p_array_house, int amount_house_total, int amount_street);
 
 

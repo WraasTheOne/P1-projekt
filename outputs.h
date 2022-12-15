@@ -101,13 +101,14 @@ void assign_color(STRUCT_HOUSE **p_array_house, STRUCT_STREET *p_array_street, i
         }
     }
 }
-void result(double total_distance_improved, double total_distance, double time_saved, double time_original, int included_houses, int amount_house_total, int amount_street, int included_streets)
+void result(double total_distance_improved, double total_distance, double time_improved, double time_original, int included_houses, int amount_house_total, int amount_street, int included_streets)
 {
     double percent_distance = (total_distance - total_distance_improved) / total_distance * 100;
-    double percent_time = (time_original - time_saved) / time_original * 100;
+    double percent_time = (time_original - time_improved) / time_original * 100;
     double percent_houses_inc = (double)(amount_house_total - included_houses) / amount_house_total * 100;
     double percent_streets_inc = (double)(amount_street - included_streets) / amount_street * 100;
     int houses_saved = amount_house_total - included_houses;
+    double time_saved = time_original - time_improved;
 
     printf(RED "\nNot improved distance = %.2lf " RESET ": ", total_distance);
     printf(GREEN "Improved distance = %.2lf\n" RESET, total_distance_improved);
