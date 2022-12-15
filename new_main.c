@@ -6,9 +6,9 @@
 #include "load_data.h"
 #include "outputs.h"
 
+#define AMOUNT_OF_STREETS 5
 
 
-#define MAXHOUSE 8
 
 int main(void)
 {
@@ -18,11 +18,11 @@ int main(void)
     STRUCT_HOUSE **p_array_house;
 
     printf("type 1 to generate data and 2 to load data");
-    choice = 2;
+    choice = 1;
 
     if (choice == 1)
     {
-        amount_street = 5;
+        amount_street = AMOUNT_OF_STREETS;
         p_array_street = generate_street_array(amount_street);
         // Count total amount of houses to generate house array
         for (int i = 0; i < amount_street; ++i)

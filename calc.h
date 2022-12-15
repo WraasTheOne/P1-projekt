@@ -1,3 +1,5 @@
+#define TIME_PER_HOUSE 0.907963595
+
 int cmpfunc(const void *a, const void *b)
 {
 
@@ -65,12 +67,12 @@ double cal_time_saved(int amount_streets, STRUCT_HOUSE **p_array_house, STRUCT_S
     {
         if (p_array_street[j].street_include == 1)
         {
-            time_counter += (p_array_street[j].amount_house_street * 0.907963595);
+            time_counter += (p_array_street[j].amount_house_street * TIME_PER_HOUSE);
             for (int k = 0; k < p_array_street[j].amount_house_street; ++k)
             {
                 if (p_array_house[j][k].house_include == 0)
                 {
-                    time_counter -= 0.907963595;
+                    time_counter -= TIME_PER_HOUSE;
                 }
             }
         }
