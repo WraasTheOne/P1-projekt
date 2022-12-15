@@ -17,7 +17,7 @@ int main(void)
     STRUCT_STREET *p_array_street;
     STRUCT_HOUSE **p_array_house;
 
-    printf("type 1 to generate data and 2 to load data");
+    printf("type 1 to generate data and 2 to load data\n");
     choice = 1;
 
     if (choice == 1)
@@ -48,7 +48,7 @@ int main(void)
 
 
     assign_color(p_array_house,p_array_street, amount_house_total, amount_street);
-    print_house_color(p_array_street, p_array_house, amount_house_total, amount_street);
+    print_prompt_house_color(p_array_street, p_array_house, amount_house_total, amount_street);
 
 
     included_streets = cal_inc_streets(amount_street, p_array_house, p_array_street);
@@ -61,12 +61,10 @@ int main(void)
 
     print_output(p_array_street, p_array_house, amount_house_total, amount_street);
 
-
     total_distance_improved = calc_improved_path(amount_street, p_array_house, p_array_street);
     total_distance = cal_not_imp(amount_street, p_array_house, p_array_street);
 
     time_improved = cal_time_saved(amount_street, p_array_house, p_array_street);
-
     time = cal_time(amount_street, p_array_house, p_array_street);
 
 

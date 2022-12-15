@@ -150,27 +150,4 @@ double cal_not_imp(int amount_streets, STRUCT_HOUSE **p_array_house, STRUCT_STRE
 
 
 
-void result(double total_distance_improved, double total_distance, double time_saved, double time_original, int included_houses, int amount_house_total, int amount_street, int included_streets)
-{
-    double percent_distance = (total_distance - total_distance_improved) / total_distance * 100;
-    double percent_time = (time_original - time_saved) / time_original * 100;
-    double percent_houses_inc = (double)(amount_house_total - included_houses) / amount_house_total * 100;
-    double percent_streets_inc = (double)(amount_street - included_streets) / amount_street * 100;
-    int houses_saved = amount_house_total - included_houses;
 
-    printf(RED "\nNot improved distance = %.2lf " RESET ": ", total_distance);
-    printf(GREEN "Improved distance = %.2lf\n" RESET, total_distance_improved);
-    printf(RED"Not improved time = %.2lf "RESET": ", time_original);
-    printf(GREEN "Improved time  = %.2lf\n" RESET, time_saved);
-    printf(RED"Houses total = %d " RESET ": ", amount_house_total);
-    printf(GREEN "Houses skipped = %d\n" RESET, (amount_house_total - included_houses));
-    printf(RED"Streets total = %d "RESET ": ", amount_street);
-    printf(GREEN"Streets skipped = %d\n"RESET, (amount_street - included_streets));
-    printf("----------------------------------------------------\n");
-    printf(BLUE "Saved distance = %.2lf\n", (total_distance - total_distance_improved));
-    printf(BLUE "Distance improvement in percent = %.2lf%% \n" RESET, percent_distance);
-    printf(BLUE "Time improvement in percent = %.2lf%%\n" RESET, percent_time);
-    printf(BLUE "Houses skipped in percent = %.2lf%%\n" RESET, percent_houses_inc);
-    printf(BLUE"Streets skipped in percent = %.2lf%%\n" RESET, percent_streets_inc);
-
-}

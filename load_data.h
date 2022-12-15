@@ -27,7 +27,7 @@ STRUCT_STREET *load_streets(int *amount_streets)
     do
     {
         reads = fscanf(file_streets,"%d,%d,%d,%d,%d\n",
-                       &array_street[*amount_streets].street_nr,
+                       &array_street[*amount_streets].street_no,
                        &array_street[*amount_streets].amount_house_street,
                        &array_street[*amount_streets].length_of_street,
                        &array_street[*amount_streets].open_street,
@@ -73,8 +73,8 @@ STRUCT_HOUSE **load_houses(STRUCT_STREET *array_streets, int amount_street)
         for (i = 0; i <= array_streets[j].amount_house_street; i++)
         {
             fscanf(file, "%d,%d,%d,%d,%d\n",
-                   &array_houses[j][i].street_name,
-                   &array_houses[j][i].house_name,
+                   &array_houses[j][i].street_no,
+                   &array_houses[j][i].house_no,
                    &array_houses[j][i].fill_amount_procent,
                    &array_houses[j][i].last_empty_days,
                    &array_houses[j][i].house_include);
@@ -99,7 +99,7 @@ STRUCT_STREET *generate_street_array(int amount_street)
     array_street = malloc(amount_street * sizeof(STRUCT_STREET));
     for (i = 0; i < amount_street; ++i)
     {
-        array_street[i].street_nr = (i+1);
+        array_street[i].street_no = (i+1);
         array_street[i].amount_house_street = 1 + rand() % MAXHOUSE;
         array_street[i].length_of_street = 1 + rand() % 20;
         array_street[i].distance_start = 1 +rand() % 20;
@@ -130,8 +130,8 @@ STRUCT_HOUSE **generate_house_array(int amount_street, int amount_house_total, S
             {
                 array_house[x][j].fill_amount_procent = rand() % 100;
                 array_house[x][j].last_empty_days = rand() % 30;
-                array_house[x][j].street_name = x + 1;
-                array_house[x][j].house_name = j + 1;
+                array_house[x][j].street_no = x + 1;
+                array_house[x][j].house_no = j + 1;
             }
         }
     }

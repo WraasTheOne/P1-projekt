@@ -10,7 +10,7 @@ typedef enum color{red, green, yellow, blue} color;
 
 typedef struct STRUCT_STREET
 {
-    int street_nr;
+    int street_no;
     int amount_house_street;
     int length_of_street;
     int open_street;
@@ -20,8 +20,8 @@ typedef struct STRUCT_STREET
 
 typedef struct STRUCT_HOUSE
 {
-    int street_name;
-    int house_name;
+    int street_no;
+    int house_no;
     int fill_amount_procent;
     int last_empty_days;
     int house_include;
