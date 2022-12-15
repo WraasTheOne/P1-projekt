@@ -29,7 +29,7 @@ void print_prompt_house_color(STRUCT_STREET *p_array_street, STRUCT_HOUSE **p_ar
                 printf(BLUE "House_number: %d\nBin_fill_amount: %d%%\nDays since last empty: %d\n\n" RESET, p_array_house[i][y].house_no, p_array_house[i][y].fill_amount_procent, p_array_house[i][y].last_empty_days);
             }
         }
-        printf("\nWhich houses to include?\n (press enter between each house and continue with 0\n");
+        printf("\nWhich houses to include?\n(press enter between each house and continue with 0\n");
 
         do
         {
@@ -48,7 +48,7 @@ void print_prompt_house_color(STRUCT_STREET *p_array_street, STRUCT_HOUSE **p_ar
 
 void print_output(STRUCT_STREET *p_array_street, STRUCT_HOUSE **p_array_house, int amount_house_total, int amount_street){
     printf("----------------------------------------------------\n");
-    printf("All included houses:\n");
+    printf("All included houses ordered in distance from start:\n");
     for (int i = 0; i < amount_street; i++)
     {
         if(p_array_street[i].street_include == 1){
@@ -75,6 +75,7 @@ void print_output(STRUCT_STREET *p_array_street, STRUCT_HOUSE **p_array_house, i
         }
         }
     }
+    printf("----------------------------------------------------\n");
 
 }
 

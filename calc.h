@@ -9,7 +9,7 @@ int cmpfunc(const void *a, const void *b)
     return (data1->distance_start - data2->distance_start);
 }
 
-int cal_inc_streets(int amount_streets, STRUCT_HOUSE **p_array_house, STRUCT_STREET *p_array_street)
+int calc_inc_streets(int amount_streets, STRUCT_HOUSE **p_array_house, STRUCT_STREET *p_array_street)
 {
     int street_counter = 0;
     for (int i = 0; i < amount_streets; i++)
@@ -27,7 +27,7 @@ int cal_inc_streets(int amount_streets, STRUCT_HOUSE **p_array_house, STRUCT_STR
     return street_counter;
 }
 
-int cal_houses(int amount_streets, STRUCT_HOUSE **p_array_house, STRUCT_STREET *p_array_street)
+int calc_houses(int amount_streets, STRUCT_HOUSE **p_array_house, STRUCT_STREET *p_array_street)
 {
     int house_counter = 0;
 
@@ -41,12 +41,12 @@ int cal_houses(int amount_streets, STRUCT_HOUSE **p_array_house, STRUCT_STREET *
             }
         }
     }
-    house_counter -= 1;
+
 
     return house_counter;
 }
 
-double cal_time(int amount_streets, STRUCT_HOUSE **p_array_house, STRUCT_STREET *p_array_street){
+double calc_time(int amount_streets, STRUCT_HOUSE **p_array_house, STRUCT_STREET *p_array_street){
     double time_counter = 0;
     
     for (int j = 0; j < amount_streets; ++j)
@@ -59,7 +59,7 @@ double cal_time(int amount_streets, STRUCT_HOUSE **p_array_house, STRUCT_STREET 
 }
 
 
-double cal_time_saved(int amount_streets, STRUCT_HOUSE **p_array_house, STRUCT_STREET *p_array_street)
+double calc_time_saved(int amount_streets, STRUCT_HOUSE **p_array_house, STRUCT_STREET *p_array_street)
 {
     double time_counter = 0;
 
@@ -80,6 +80,7 @@ double cal_time_saved(int amount_streets, STRUCT_HOUSE **p_array_house, STRUCT_S
     return time_counter;
 }
 
+//INCLUDE
 double calc_improved_path(int amount_streets, STRUCT_HOUSE **p_array_house, STRUCT_STREET *p_array_street)
 {
     double total_distance = 0;
@@ -123,7 +124,7 @@ double calc_improved_path(int amount_streets, STRUCT_HOUSE **p_array_house, STRU
     return total_distance;
 }
 
-double cal_not_imp(int amount_streets, STRUCT_HOUSE **p_array_house, STRUCT_STREET *p_array_street)
+double calc_not_imp(int amount_streets, STRUCT_HOUSE **p_array_house, STRUCT_STREET *p_array_street)
 {
     double total_distance;
 

@@ -51,23 +51,23 @@ int main(void)
     print_prompt_house_color(p_array_street, p_array_house, amount_house_total, amount_street);
 
 
-    included_streets = cal_inc_streets(amount_street, p_array_house, p_array_street);
+    included_streets = calc_inc_streets(amount_street, p_array_house, p_array_street);
 
-    included_houses = cal_houses(amount_street, p_array_house, p_array_street);
+    included_houses = calc_houses(amount_street, p_array_house, p_array_street);
 
     //time_counter = cal_time_saved(amount_street, p_array_house, p_array_street);
     
 
 
-    print_output(p_array_street, p_array_house, amount_house_total, amount_street);
+   
 
     total_distance_improved = calc_improved_path(amount_street, p_array_house, p_array_street);
-    total_distance = cal_not_imp(amount_street, p_array_house, p_array_street);
+    total_distance = calc_not_imp(amount_street, p_array_house, p_array_street);
 
-    time_improved = cal_time_saved(amount_street, p_array_house, p_array_street);
-    time = cal_time(amount_street, p_array_house, p_array_street);
+    time_improved = calc_time_saved(amount_street, p_array_house, p_array_street);
+    time = calc_time(amount_street, p_array_house, p_array_street);
 
-
+    print_output(p_array_street, p_array_house, amount_house_total, amount_street);
     result(total_distance_improved, total_distance, time_improved, time, included_houses, amount_house_total, amount_street, included_streets); 
 
 
