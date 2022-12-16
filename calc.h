@@ -1,4 +1,3 @@
-#define TIME_PER_HOUSE 0.907963595
 
 int cmpfunc(const void *a, const void *b)
 {
@@ -57,7 +56,7 @@ double calc_time(int amount_streets, STRUCT_HOUSE **p_array_house, STRUCT_STREET
 }
 
 
-double calc_time_saved(int amount_streets, STRUCT_HOUSE **p_array_house, STRUCT_STREET *p_array_street)
+double calc_improved_time(int amount_streets, STRUCT_HOUSE **p_array_house, STRUCT_STREET *p_array_street)
 {
     double time_counter = 0;
 

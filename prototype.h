@@ -8,6 +8,7 @@ typedef enum color{red, green, yellow, blue} color;
 
 #define MAXHOUSE 8
 #define TIME_PER_HOUSE 0.907963595
+#define AMOUNT_OF_STREETS 5
 typedef struct STRUCT_STREET
 {
     int street_no;
