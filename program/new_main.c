@@ -6,6 +6,9 @@
 #include "load_data.h"
 #include "outputs.h"
 
+#define AMOUNT_OF_STREETS 5
+
+
 
 int main(void)
 {
@@ -15,7 +18,7 @@ int main(void)
     STRUCT_HOUSE **p_array_house;
 
     printf("type 1 to generate data and 2 to load data\n");
-    scanf("%d", &choice);
+    choice = 1;
 
     if (choice == 1)
     {
@@ -61,7 +64,7 @@ int main(void)
     total_distance_improved = calc_improved_path(amount_street, p_array_house, p_array_street);
     total_distance = calc_not_imp(amount_street, p_array_house, p_array_street);
 
-    time_improved = calc_improved_time(amount_street, p_array_house, p_array_street);
+    time_improved = calc_time_saved(amount_street, p_array_house, p_array_street);
     time = calc_time(amount_street, p_array_house, p_array_street);
 
     print_output(p_array_street, p_array_house, amount_house_total, amount_street);
